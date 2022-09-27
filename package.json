@@ -1,0 +1,11 @@
+{
+  "name": "auth-microservices-redis",
+  "version": "1.0.0",
+  "description": "NodeJS microservices with auth and Redis integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Bonino",
+  "license": "ISC"
+}

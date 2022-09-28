@@ -1,4 +1,7 @@
-import {sign} from '../../../auth/index.js';
+import bcrypt from 'bcrypt';
+import { sign } from '../../../auth/index.js';
+
+
 const TABLE = 'auth';
 
 export default function (injectedStore) {
@@ -10,16 +13,20 @@ export default function (injectedStore) {
 
     async function login(username, password) {
         const data = await store.query(TABLE, { username });
-        if (data.password === password){
-            return sign(data);
-        } else {
-            throw new Error('Invalid data');
-        };       
 
+        return bcrypt.compare(password, data.password)
+            .then(samePassword => {
+                if (samePassword === true) {
+                    return sign(data);
+                } else {
+                    throw new Error('Invalid data');
+                };
+            });
+                
     };
 
 
-    function upsert(data) {
+    async function upsert(data) {
         const authData = {
             id: data.id
         }
@@ -30,7 +37,7 @@ export default function (injectedStore) {
         }
 
         if (data.password) {
-            authData.password = data.password;
+            authData.password = await bcrypt.hash(data.password, 5);
         }
 
         return store.upsert(TABLE, authData);

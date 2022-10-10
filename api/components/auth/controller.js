@@ -5,14 +5,11 @@ import { sign } from '../../../auth/index.js';
 const TABLE = 'auth';
 
 export default function (injectedStore) {
-    let store = injectedStore;
-
-    if (!store) {
-        store = require('../../../store/dummy.js').default;
-    };
-
+    
+    injectedStore.handleConnection();
+    
     async function login(username, password) {
-        const data = await store.query(TABLE, { username });
+        const data = await injectedStore.query(TABLE, { username });
 
         return bcrypt.compare(password, data.password)
             .then(samePassword => {
@@ -21,16 +18,14 @@ export default function (injectedStore) {
                 } else {
                     throw new Error('Invalid data');
                 };
-            });
-                
+            });                
     };
 
 
-    async function upsert(data) {
+    async function insert(data) {
         const authData = {
             id: data.id
         }
-
 
         if (data.username) {
             authData.username = data.username;
@@ -40,11 +35,11 @@ export default function (injectedStore) {
             authData.password = await bcrypt.hash(data.password, 5);
         }
 
-        return store.upsert(TABLE, authData);
+        return injectedStore.insert(TABLE, authData);
     }
 
     return {
-        upsert,
+        insert,
         login
     };
 }

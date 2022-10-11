@@ -1,4 +1,4 @@
-import { response, Router } from 'express';
+import { Router } from 'express';
 import { checkAuth as secure } from './secure.js';
 import { success } from '../../../network/response.js';
 import Controller from './index.js';

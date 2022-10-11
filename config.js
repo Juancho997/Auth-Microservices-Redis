@@ -11,7 +11,7 @@ export const jwtAuth = {
 };
 
 export const mysqlConfig = {
-    host: process.env.MYSQL_HOST || 'remotemysql.com',
+    host: process.env.MYSQL_HOST || '',
     user: process.env.MYSQL_USER || '6XbeeKUJen',
     password: process.env.MYSQL_PASS || '3QF7r4Au2x',
     database: process.env.MYSQL_DB || '6XbeeKUJen',

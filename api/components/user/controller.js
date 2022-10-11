@@ -5,7 +5,7 @@ const TABLE = 'user';
 
 export default function (injectedStore) {
 
-    injectedStore.handleConnection();
+    // injectedStore.handleConnection();
 
     function list() {
         return injectedStore.list(TABLE);

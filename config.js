@@ -2,6 +2,10 @@ export const api = {
     port: process.env.API_PORT || 3000
 };
 
+export const post_service = {
+    port: process.env.POST_PORT || 3002
+};
+
 export const jwtAuth = {
     secret: process.env.JWT_SECRET || 'secret'
 };

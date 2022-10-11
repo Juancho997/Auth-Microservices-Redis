@@ -19,8 +19,13 @@ export const mysqlConfig = {
 };
 
 export const mysqlService = {
-    host : process.env.MYSQL_SRV_HOST || 'localhost',
-    port : process.env.MYSQL_SRV_PORT || 3001
+    host: process.env.MYSQL_SRV_HOST || 'localhost',
+    port: process.env.MYSQL_SRV_PORT || 3001
+};
+
+export const cacheService = {
+    host: process.env.CACHE_SRV_HOST || 'localhost',
+    port: process.env.CACHE_SRV_PORT || 3003
 };
 
 export const remoteDB = process.env.REMOTE_DB || false;

@@ -28,4 +28,11 @@ export const cacheService = {
     port: process.env.CACHE_SRV_PORT || 3003
 };
 
+export const redisConfig = {
+    user : 'default',
+    host: process.env.REDIS_HOST || 'redis-12632.c16.us-east-1-2.ec2.cloud.redislabs.com',
+    port: process.env.REDIS_PORT || '12632',
+    password: process.env.REDIS_PASSWORD || 'geaXTGgXTgWW2U8RgYrSwg91jOHOqEf0'
+};
+
 export const remoteDB = process.env.REMOTE_DB || false;

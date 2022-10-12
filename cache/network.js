@@ -9,8 +9,6 @@ router.get('/:table', list);
 router.get('/:table/:id', get);
 router.put('/:table', update); //limpiar cache
 
-store.handleConnection();
-
 async function list(req, res, next){
     const data =  await store.list(req.params.table)
     success(req, res, data, 200);
